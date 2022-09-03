@@ -1,7 +1,7 @@
-import Sequelize from 'db';
+import Sequelize from '../../db';
 import { DataTypes } from 'sequelize';
 
-const User = Sequelize.define('user', {
+const TelegramUser = Sequelize.define('user', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -21,6 +21,9 @@ const User = Sequelize.define('user', {
   language_code: {
     type: DataTypes.STRING,
   },
+  createdAt: {
+    type: DataTypes.DATE,
+  },
 });
 
-module.exports = User;
+module.exports = TelegramUser;

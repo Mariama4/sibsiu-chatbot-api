@@ -4,7 +4,7 @@
         "es2021": true,
         "node": true
     },
-    "extends": ["eslint:recommended", "prettier", "standard"],
+    "extends": ["eslint", "prettier", "standard:recommended"],
     "overrides": [
     ],
     "parserOptions": {

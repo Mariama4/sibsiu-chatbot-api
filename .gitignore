@@ -1,0 +1,4 @@
+# ignore secret data
+.env
+# ignore other staff
+node_modules

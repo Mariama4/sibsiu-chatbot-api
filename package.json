@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "api side for telegram-bot project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sibsiu-chatbot-api"
+  },
+  "author": "Georgy Taskabulov",
+  "license": "ISC"
+}

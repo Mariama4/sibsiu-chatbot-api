@@ -13,7 +13,7 @@
     "url": "sibsiu-chatbot-api"
   },
   "author": "Georgy Taskabulov",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",

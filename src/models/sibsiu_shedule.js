@@ -16,6 +16,9 @@ const SibsiuShedule = Sequelize.define('sibsiu_shedule', {
   url: {
     type: DataTypes.STRING,
   },
+  date: {
+    type: DataTypes.DATE,
+  },
 });
 
 export default SibsiuShedule;

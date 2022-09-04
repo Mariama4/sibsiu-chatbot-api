@@ -1,8 +1,13 @@
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
+import https from 'https';
 
 const SIBSIU_SHEDULE_PAGE_URL = 'https://www.sibsiu.ru/raspisanie/';
 const SIBSIU_PAGE_URL = 'https://www.sibsiu.ru';
+
+function getAndTransformFilenInImages(obj) {
+  console.log(obj);
+}
 
 export default function parseSibsiuShedule() {
   console.log('start parsing...');
@@ -31,11 +36,17 @@ export default function parseSibsiuShedule() {
               .getAttribute('href')
               .replaceAll('\\', '/')
               .replaceAll(' ', '%20');
-          resultObj[instituteTitle][pdfFileName] = pdfLink;
+
+          resultObj[instituteTitle][pdfFileName] = {
+            link: pdfLink,
+            date: '',
+          };
         }
       }
+      getAndTransformFilenInImages(resultObj);
       console.log('end parsing...');
-      return resultObj;
+      // console.log(resultObj);
+      // return resultObj;
     })
     .catch((err) => {
       console.log(err);

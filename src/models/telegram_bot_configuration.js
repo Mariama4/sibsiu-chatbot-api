@@ -1,4 +1,4 @@
-import Sequelize from '../../db';
+import Sequelize from '../db';
 import { DataTypes } from 'sequelize';
 
 const TelegramBotConfiguration = Sequelize.define(

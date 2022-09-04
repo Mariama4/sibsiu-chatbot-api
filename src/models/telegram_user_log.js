@@ -1,4 +1,4 @@
-import Sequelize from '../../db';
+import Sequelize from '../db';
 import { DataTypes } from 'sequelize';
 
 const TelegramUserLog = Sequelize.define('telegram_user_log', {

@@ -1,21 +1,22 @@
-import Sequelize from '../../db';
+import Sequelize from '../db';
 import { DataTypes } from 'sequelize';
 
-const SibsiuShedule = Sequelize.define('sibsiu_shedule', {
+const User = Sequelize.define('user', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  institute: {
+  name: {
     type: DataTypes.STRING,
   },
-  file: {
+  email: {
     type: DataTypes.STRING,
+    unique: true,
   },
-  url: {
+  password: {
     type: DataTypes.STRING,
   },
 });
 
-export default SibsiuShedule;
+module.exports = User;

@@ -1,8 +1,8 @@
-import { Sequelize } from 'sequelize/types';
+import { Sequelize } from 'sequelize';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-module.exports = new Sequelize(
+export default new Sequelize(
   process.env.DB_NAME, // Название БД
   process.env.DB_USER, // Пользователь
   process.env.DB_PASSWORD, // Пароль

@@ -5,11 +5,11 @@ import https from 'https';
 const SIBSIU_SHEDULE_PAGE_URL = 'https://www.sibsiu.ru/raspisanie/';
 const SIBSIU_PAGE_URL = 'https://www.sibsiu.ru';
 
-function getAndTransformFilenInImages(obj) {
+async function getAndTransformFilenInImages(obj) {
   console.log(obj);
 }
 
-export default function parseSibsiuShedule() {
+async function parseSibsiuShedule() {
   console.log('start parsing...');
   axios
     .get(SIBSIU_SHEDULE_PAGE_URL)
@@ -43,12 +43,13 @@ export default function parseSibsiuShedule() {
           };
         }
       }
-      getAndTransformFilenInImages(resultObj);
-      console.log('end parsing...');
-      // console.log(resultObj);
-      // return resultObj;
+      await getAndTransformFilenInImages(resultObj);
     })
     .catch((err) => {
       console.log(err);
     });
+}
+
+export default function parseSibsiuShedule() {
+  
 }

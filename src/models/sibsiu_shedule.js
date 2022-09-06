@@ -15,12 +15,24 @@ const SibsiuShedule = Sequelize.define('sibsiu_shedule', {
     // название файла
     type: DataTypes.STRING,
   },
-  url: {
-    // локальная ссылка
+  url_pdf: {
+    // ссылка на pdf на сайте сибгиу
     type: DataTypes.STRING,
   },
-  date: {
+  page_number: {
+    // номер страницы
+    type: DataTypes.INTEGER,
+  },
+  url_png_page: {
+    // локальная ссылка на png страницы
+    type: DataTypes.STRING,
+  },
+  date_last_modified: {
     // дата обновления файла на сайте сибгиу
+    type: DataTypes.DATE,
+  },
+  date_last_update: {
+    // дата обновления на сервере
     type: DataTypes.DATE,
   },
 });

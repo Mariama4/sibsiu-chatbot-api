@@ -44,7 +44,7 @@ def SaveImages(images, resultStructure,
         pngUrl = 'storage/img/' + \
             ''.join(random.choice(string.ascii_letters)
                     for j in range(20)) + '.png'
-        # v[i].save(pngUrl)
+        v.save(pngUrl)
         resultStructure.append(
             {
                 'institute': instituteTitle,
@@ -88,21 +88,22 @@ def getShedule():
                        lastModified,
                        dateNow
                        )
-        break
 
     print(resultStructure)
 
 
-def updatePdfPath():
-    path = 'storage/pdf'
+def updatePath(dir):
+    path = 'storage/' + dir
     shutil.rmtree(path)
     os.mkdir(path)
 
 
 if __name__ == '__main__':
     print('hello its python')
-    updatePdfPath()
+    updatePath('pdf')
+    updatePath('img')
     getShedule()
+
     # with open('src/services/python_service/link_to_download.txt') as f:
     #     for link in f:
     #         print(CheckLastModified(link.strip()))

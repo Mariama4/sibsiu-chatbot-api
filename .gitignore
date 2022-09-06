@@ -4,3 +4,5 @@
 node_modules
 # ignore python stuff
 env
+#wtf
+.DS_Store

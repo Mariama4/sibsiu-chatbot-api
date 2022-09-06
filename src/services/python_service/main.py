@@ -1,4 +1,3 @@
-#!/env
 import requests as request
 from pdf2image import convert_from_path
 from bs4 import BeautifulSoup
@@ -103,8 +102,3 @@ if __name__ == '__main__':
     updatePath('pdf')
     updatePath('img')
     getShedule()
-
-    # with open('src/services/python_service/link_to_download.txt') as f:
-    #     for link in f:
-    #         print(CheckLastModified(link.strip()))
-    #         break

@@ -8,15 +8,19 @@ const SibsiuShedule = Sequelize.define('sibsiu_shedule', {
     autoIncrement: true,
   },
   institute: {
+    // название института
     type: DataTypes.STRING,
   },
   file: {
+    // название файла
     type: DataTypes.STRING,
   },
   url: {
+    // локальная ссылка
     type: DataTypes.STRING,
   },
   date: {
+    // дата обновления файла на сайте сибгиу
     type: DataTypes.DATE,
   },
 });

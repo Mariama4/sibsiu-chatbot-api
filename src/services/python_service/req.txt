@@ -1,1 +1,1 @@
-need to create local env on machine
+https://test.pypi.org/simple/ psycopg2-binary==2.9.3

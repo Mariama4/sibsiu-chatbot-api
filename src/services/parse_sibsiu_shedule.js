@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
 import fs from 'fs';
-import startPythonFile from './transformpdftopng.js';
+import startPythonFile from './transform_pdf_to_png.js';
 
 const SIBSIU_SHEDULE_PAGE_URL = 'https://www.sibsiu.ru/raspisanie/';
 const SIBSIU_PAGE_URL = 'https://www.sibsiu.ru';
@@ -52,6 +52,9 @@ async function parseSibsiuShedule() {
           };
         }
       }
+
+      // + ВЫЗОВ СЕРВИСА ДЛЯ СОХРАНЕНИЯ В БД
+
       writeLinksToFile(linkList);
     })
     .catch((err) => {

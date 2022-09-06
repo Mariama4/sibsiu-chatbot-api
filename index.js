@@ -1,4 +1,4 @@
-import parseSibsiuShedule from './src/services/parseSibsiuShedule.js';
+import parseSibsiuShedule from './src/services/parse_sibsiu_shedule.js';
 import sequelize from './src/db/index.js';
 
 const start = async () => {

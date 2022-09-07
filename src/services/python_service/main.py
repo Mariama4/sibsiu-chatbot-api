@@ -6,7 +6,15 @@ import re
 import random
 import string
 import shutil
+import psycopg2
+from psycopg2 import Error
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import os
+from dotenv import load_dotenv
+from pathlib import Path
+
+dotenv_path = Path('.env')
+load_dotenv(dotenv_path=dotenv_path)
 
 
 def CheckLastModified(link):
@@ -66,6 +74,9 @@ def getShedule():
     responseHTML = BeautifulSoup(response.text, 'html.parser')
     instituteDivs = responseHTML.select('.institut_div')
     resultStructure = []
+    #   TODO:
+    # SELECT DISTICT PDF FILES AND RETURN LAST MODIFIED INFO FOR COMPARING
+    #
     for institute in instituteDivs:
         instituteTitle = institute.select('p.p_title > strong')
         instituteTitle = re.findall(r"\>(.*?)\<", str(instituteTitle))
@@ -91,7 +102,11 @@ def getShedule():
     print(resultStructure)
 
 
-def updatePath(dir):
+def SaveToDatabase(structure):
+    pass
+
+
+def updateDir(dir):
     path = 'storage/' + dir
     shutil.rmtree(path)
     os.mkdir(path)
@@ -99,6 +114,23 @@ def updatePath(dir):
 
 if __name__ == '__main__':
     print('hello its python')
-    updatePath('pdf')
-    updatePath('img')
+    try:
+        # Подключение к существующей базе данных
+        connection = psycopg2.connect(user=os.getenv('DB_USER'),
+                                      database=os.getenv('DB_NAME'),
+                                      password=os.getenv('DB_PASSWORD'),
+                                      host=os.getenv('DB_HOST'),
+                                      port=os.getenv('DB_PORT'))
+        connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+        # Курсор для выполнения операций с базой данных
+        cursor = connection.cursor()
+    except (Exception, Error) as error:
+        print("Ошибка при работе с PostgreSQL", error)
+    finally:
+        if connection:
+            cursor.close()
+            connection.close()
+            print("Соединение с PostgreSQL закрыто")
+    updateDir('pdf')
+    updateDir('img')
     getShedule()

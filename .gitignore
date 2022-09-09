@@ -6,3 +6,5 @@ node_modules
 env
 #wtf
 .DS_Store
+*.png
+*.pdf

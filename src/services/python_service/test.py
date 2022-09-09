@@ -19,8 +19,10 @@ try:
     connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     # Курсор для выполнения операций с базой данных
     cursor = connection.cursor()
-    sql_create_database = 'SELECT 1+1'
-    cursor.execute(sql_create_database)
+    query = "SELECT * FROM sibsiu_shedules WHERE url_pdf = 'Архитектурно-строительный институт'"
+    cursor.execute(query)
+    print(cursor.fetchone()[0])
+    # print(cursor.index('test url_pdf'))
 except (Exception, Error) as error:
     print("Ошибка при работе с PostgreSQL", error)
 finally:

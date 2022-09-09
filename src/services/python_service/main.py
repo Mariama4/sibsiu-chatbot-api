@@ -18,13 +18,12 @@ load_dotenv(dotenv_path=dotenv_path)
 
 
 def CheckLastModified(link):
-    now = datetime.datetime.now()
     res = request.get(link)
     res.encoding = 'utf-8'
     # дата последнего обновления файла
     lastModified = res.headers['Last-Modified']
 
-    return res, lastModified, now
+    return res, lastModified
 
 
 def ConvertPDFtoPNG(pdf):
@@ -41,12 +40,10 @@ def SaveImages(images, resultStructure,
                pdfFileName,
                pdfLinkGlobal,
                pdfLinkLocal,
-               lastModified,
-               dateNow
+               lastModified
                ):
     countOfPics = len(images)
     listOfUrls = []
-    dateNow = str(dateNow)
     for i, v in enumerate(images):
         pngUrl = 'storage/img/' + \
             ''.join(random.choice(string.ascii_letters)
@@ -60,8 +57,7 @@ def SaveImages(images, resultStructure,
                 'url_pdf_local': pdfLinkLocal,
                 'page_number': (i+1),
                 'url_png_page': pngUrl,
-                'date_last_modified': lastModified,
-                'date_last_update': dateNow
+                'date_last_modified': lastModified
             }
         )
 
@@ -87,7 +83,7 @@ def getShedule():
             pdfFileName = item.getText()
             pdfLink = SIBSIU_PAGE_URL + \
                 item['href'].replace('\\', '/').replace(' ', '%20')
-            pdf, lastModified, dateNow = CheckLastModified(pdfLink)
+            pdf, lastModified = CheckLastModified(pdfLink)
             images, pdfLinkLocal = ConvertPDFtoPNG(pdf)
             SaveImages(images,
                        resultStructure,
@@ -95,8 +91,7 @@ def getShedule():
                        pdfFileName,
                        pdfLink,
                        pdfLinkLocal,
-                       lastModified,
-                       dateNow
+                       lastModified
                        )
 
     print(resultStructure)

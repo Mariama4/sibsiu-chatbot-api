@@ -1,7 +1,7 @@
-import Sequelize from '../db';
+import Sequelize from '../db/index.js';
 import { DataTypes } from 'sequelize';
 
-const TelegramUser = Sequelize.define('user', {
+const TelegramUser = Sequelize.define('telegram_user', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -26,4 +26,4 @@ const TelegramUser = Sequelize.define('user', {
   },
 });
 
-module.exports = TelegramUser;
+export default TelegramUser;

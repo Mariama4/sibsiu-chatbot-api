@@ -1,10 +1,10 @@
-import TelegramUser from './telegram_user';
-import TelegramUserLog from './telegram_user_log';
-import User from './user';
-import TelegramBotConfiguration from './telegram_bot_configuration';
-import SibsiuShedule from './sibsiu_shedule';
+import TelegramUser from './telegram_user.js';
+import TelegramUserLog from './telegram_user_log.js';
+import User from './user.js';
+import TelegramBotConfiguration from './telegram_bot_configuration.js';
+import SibsiuShedule from './sibsiu_shedule.js';
 
-module.exports = {
+export default {
   TelegramUser,
   TelegramUserLog,
   User,

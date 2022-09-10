@@ -1,4 +1,5 @@
-import { jwt } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+const { sign, verify } = jwt;
 
 export default (req, res, next) => {
   if (req.method === 'OPTIONS') {

@@ -5,6 +5,6 @@ node_modules
 # ignore python stuff
 env
 #wtf
-.DS_Store
+*.DS_Store
 *.png
 *.pdf

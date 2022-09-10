@@ -132,8 +132,6 @@ def getShedule():
                        pdfLinkLocal,
                        lastModified
                        )
-            # SaveToDatabase(resultStructure)
-            # return
     SaveToDatabase(resultStructure)
 
 
@@ -172,7 +170,6 @@ def updateDir(dir):
 
 
 if __name__ == '__main__':
-    print('hello its python')
     try:
         # Подключение к существующей базе данных
         CONNECTION = psycopg2.connect(user=os.getenv('DB_USER'),
@@ -185,7 +182,11 @@ if __name__ == '__main__':
         CURSOR = CONNECTION.cursor()
     except (Exception, Error) as error:
         print("Ошибка при работе с PostgreSQL", error)
-    getShedule()
+
+    try:
+        getShedule()
+    except (Exception, error) as error:
+        print(f'Ошибка при выполнении функции getShedule() - {error}')
     if CONNECTION:
         CURSOR.close()
         CONNECTION.close()

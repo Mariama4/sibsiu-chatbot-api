@@ -21,6 +21,11 @@ class ConfigurationController {
       return res.json({ message: 'Запись обновлена.', updatedConfiguration });
     }
   }
+
+  async getData(req, res, next) {
+    const configuration = await TelegramBotConfiguration.findAll();
+    return res.json({ configuration });
+  }
 }
 
 export default new ConfigurationController();

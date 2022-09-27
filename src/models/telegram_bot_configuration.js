@@ -9,12 +9,16 @@ const TelegramBotConfiguration = Sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    token: {
       type: DataTypes.STRING,
       enique: true,
     },
-    data: {
+    bot_name: {
       type: DataTypes.STRING,
+      enique: true,
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
     },
   }
 );

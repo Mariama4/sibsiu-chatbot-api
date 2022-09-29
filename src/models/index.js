@@ -4,6 +4,7 @@ import User from './user.js';
 import TelegramBotConfiguration from './telegram_bot_configuration.js';
 import SibsiuShedule from './sibsiu_shedule.js';
 import TelegramBotLog from './telegram_bot_log.js';
+import TelegramBotFrame from './telegram_bot_frame.js';
 
 export default {
   TelegramUser,
@@ -12,4 +13,5 @@ export default {
   TelegramBotConfiguration,
   SibsiuShedule,
   TelegramBotLog,
+  TelegramBotFrame,
 };

@@ -17,7 +17,6 @@ class ConfigurationController {
       const updatedConfiguration = await TelegramBotConfiguration.findOne({
         where: { id },
       });
-      console.log(updatedConfiguration);
       return res.json({ message: 'Запись обновлена.', updatedConfiguration });
     }
   }

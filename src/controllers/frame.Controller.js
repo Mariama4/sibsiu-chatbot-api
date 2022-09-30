@@ -7,7 +7,6 @@ class FrameController {
     const frame = await TelegramBotFrame.create({
       data,
     });
-    console.log(frame);
     return res.json({ message: 'Добавлено' });
   }
 
@@ -25,7 +24,11 @@ class FrameController {
   }
 
   async getById(req, res, next) {
-    return;
+    const { id } = req.body;
+    const frame = await TelegramBotFrame.findOne({
+      where: { id },
+    });
+    return res.json({ frame });
   }
 }
 

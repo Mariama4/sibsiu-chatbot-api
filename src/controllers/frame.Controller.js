@@ -11,7 +11,19 @@ class FrameController {
   }
 
   async update(req, res, next) {
-    return;
+    const { id, data } = req.body;
+    const frame = await TelegramBotFrame.update(
+      {
+        data,
+      },
+      { where: { id } }
+    );
+    if (!Number(frame)) {
+      return next(ApiError.internal('Запись с таким id не найдена.'));
+    } else {
+      const updatedFrames = await TelegramBotFrame.findAll();
+      return res.json({ message: 'Запись обновлена.', updatedFrames });
+    }
   }
 
   async delete(req, res, next) {

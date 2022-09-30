@@ -1,5 +1,6 @@
 import TelegramBotConfiguration from '../models/telegram_bot_configuration.js';
 import ApiError from '../error/api.Error.js';
+import { exec } from 'child_process';
 
 class ConfigurationController {
   async updateToken(req, res, next) {
@@ -23,6 +24,22 @@ class ConfigurationController {
 
   async updateStatus(req, res, next) {
     const { id, status } = req.body;
+    let executionLine;
+    executionLine = status
+      ? 'bash src/bash/StartBot.sh'
+      : 'bash src/bash/StopBot.sh';
+
+    exec(executionLine, (error, stdout, stderr) => {
+      if (error) {
+        console.log(`error: ${error.message}`);
+        // return next(ApiError.internal('Непредвиденная ошибка.'));
+      }
+      if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        // return next(ApiError.internal('Непредвиденная ошибка.'));
+      }
+      // console.log(`stdout: ${stdout}`);
+    });
 
     const configuration = await TelegramBotConfiguration.update(
       {

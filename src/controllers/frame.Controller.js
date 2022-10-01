@@ -27,7 +27,13 @@ class FrameController {
   }
 
   async delete(req, res, next) {
-    return;
+    const { id } = req.params;
+    const frame = await TelegramBotFrame.destroy({ where: { id } });
+    if (!Number(frame)) {
+      return next(ApiError.internal('Запись с таким id не найдена.'));
+    } else {
+      return res.json({ message: 'Запись удалена.' });
+    }
   }
 
   async getAll(req, res, next) {

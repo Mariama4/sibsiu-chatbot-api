@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 // app.use(fileUpload({}));
 app.use('/api', router);
-
+app.use('/static', express.static('public'));
 app.use(errorHandler);
 
 const start = async () => {

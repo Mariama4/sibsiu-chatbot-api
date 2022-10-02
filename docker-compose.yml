@@ -1,0 +1,28 @@
+version: '3.5'
+
+services:
+  sibsiu_db:
+    container_name: sibsiu_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=sibsiu_db
+    image: postgres:14.5-alpine
+  # sibsiu_backed:
+  #   depends_on:
+  #     - sibsiu_db
+  #   build: ../api
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   ports:
+  #   - $NODE_LOCAL_PORT:$PORT
+  #   environment:
+  #     - DB_HOST=sibsiu_db
+  #     - DB_USER=admin
+  #     - DB_PASSWORD=root
+  #     - DB_NAME=sibsiu_db
+  #     - DB_PORT=5432
+
+    

@@ -16,19 +16,22 @@ class FrameController {
         const { photo } = req.files;
         let fileName = uuidv4() + '.' + photo.name.split('.')[1];
         photo.mv(path.resolve(__dirname, '../..', 'public', fileName));
-        data.DATA.MESSAGE.PHOTO.PHOTO_URL = fileName;
+        data.DATA.MESSAGE.PHOTO = fileName;
       } else if (data.DATA.MESSAGE.TYPE == 'MEDIA_GROUP') {
         let { media } = req.files;
+        let mediaArr = [];
         media.map((element, index) => {
           let fileName = uuidv4() + '.' + element.name.split('.')[1];
           element.mv(path.resolve(__dirname, '../..', 'public', fileName));
-          data.DATA.MESSAGE.MEDIA_GROUP[index].MEDIA_URL = fileName;
+          mediaArr.push(fileName);
         });
+        data.DATA.MESSAGE.MEDIA_GROUP = mediaArr;
       } else if (data.DATA.MESSAGE.TYPE == 'VIDEO_NOTE') {
+        console.log(req.files);
         const { video_note } = req.files;
         let fileName = uuidv4() + '.' + video_note.name.split('.')[1];
         video_note.mv(path.resolve(__dirname, '../..', 'public', fileName));
-        data.DATA.MESSAGE.VIDEO_NOTE.VIDEO_NOTE_URL = fileName;
+        data.DATA.MESSAGE.VIDEO_NOTE = fileName;
       }
     }
     const frame = await TelegramBotFrame.create({
@@ -45,19 +48,21 @@ class FrameController {
         const { photo } = req.files;
         let fileName = uuidv4() + '.' + photo.name.split('.')[1];
         photo.mv(path.resolve(__dirname, '../..', 'public', fileName));
-        data.DATA.MESSAGE.PHOTO.PHOTO_URL = fileName;
+        data.DATA.MESSAGE.PHOTO = fileName;
       } else if (data.DATA.MESSAGE.TYPE == 'MEDIA_GROUP') {
         let { media } = req.files;
+        let mediaArr = [];
         media.map((element, index) => {
           let fileName = uuidv4() + '.' + element.name.split('.')[1];
           element.mv(path.resolve(__dirname, '../..', 'public', fileName));
-          data.DATA.MESSAGE.MEDIA_GROUP[index].MEDIA_URL = fileName;
+          mediaArr.push(fileName);
         });
+        data.DATA.MESSAGE.MEDIA_GROUP = mediaArr;
       } else if (data.DATA.MESSAGE.TYPE == 'VIDEO_NOTE') {
         const { video_note } = req.files;
         let fileName = uuidv4() + '.' + video_note.name.split('.')[1];
         video_note.mv(path.resolve(__dirname, '../..', 'public', fileName));
-        data.DATA.MESSAGE.VIDEO_NOTE.VIDEO_NOTE_URL = fileName;
+        data.DATA.MESSAGE.VIDEO_NOTE = fileName;
       }
     }
     const frame = await TelegramBotFrame.update(

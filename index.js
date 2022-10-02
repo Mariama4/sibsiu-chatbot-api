@@ -12,9 +12,9 @@ const PORT = process.env.PORT || 5050;
 const app = express();
 app.use(cors());
 app.use(express.json());
-// app.use(fileUpload({}));
+app.use(fileUpload());
 app.use('/api', router);
-app.use('/static', express.static('public'));
+app.use('/public', express.static('public'));
 app.use(errorHandler);
 
 const start = async () => {

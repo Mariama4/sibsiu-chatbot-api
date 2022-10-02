@@ -7,5 +7,6 @@ env
 #wtf
 *.DS_Store
 *.png
+*.jpg
 *.pdf
 *.mp4

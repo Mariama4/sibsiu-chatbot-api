@@ -6,9 +6,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_USER=admin
-      - POSTGRES_DB=sibsiu_db
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_DB=$DB_NAME
     image: postgres:14.5-alpine
   # sibsiu_backed:
   #   depends_on:

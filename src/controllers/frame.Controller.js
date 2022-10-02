@@ -90,7 +90,7 @@ class FrameController {
   }
 
   async getAll(req, res, next) {
-    const frames = await TelegramBotFrame.findAll();
+    const frames = await TelegramBotFrame.findAll({ order: [['id', 'ASC']] });
     return res.json({ frames });
   }
 

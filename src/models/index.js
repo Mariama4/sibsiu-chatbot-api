@@ -6,7 +6,7 @@ import SibsiuShedule from './sibsiu_shedule.js';
 import TelegramBotLog from './telegram_bot_log.js';
 import TelegramBotFrame from './telegram_bot_frame.js';
 
-export default {
+export {
   TelegramUser,
   TelegramUserLog,
   User,

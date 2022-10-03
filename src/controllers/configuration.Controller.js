@@ -1,6 +1,7 @@
-import TelegramBotConfiguration from '../models/telegram_bot_configuration.js';
+import { TelegramBotConfiguration } from '../models/index.js';
 import ApiError from '../error/api.Error.js';
 import { exec } from 'child_process';
+import { winstonLogger as Logger } from '../logger/index.js';
 
 class ConfigurationController {
   async updateToken(req, res, next) {
@@ -31,14 +32,14 @@ class ConfigurationController {
 
     exec(executionLine, (error, stdout, stderr) => {
       if (error) {
-        console.log(`error: ${error.message}`);
+        Logger.error(error.message);
         // return next(ApiError.internal('Непредвиденная ошибка.'));
       }
       if (stderr) {
-        console.log(`stderr: ${stderr}`);
+        Logger.warn(`stderr: ${stderr}`);
         // return next(ApiError.internal('Непредвиденная ошибка.'));
       }
-      // console.log(`stdout: ${stdout}`);
+      Logger.info(`stdout: ${stdout}`);
     });
 
     const configuration = await TelegramBotConfiguration.update(

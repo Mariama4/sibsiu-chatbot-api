@@ -1,7 +1,8 @@
-import Sequelize from '../db/index.js';
+import sequelize from '../db/index.js';
 import { DataTypes } from 'sequelize';
+import { winstonLogger as Logger } from '../logger/index.js';
 
-const TelegramBotConfiguration = Sequelize.define(
+const TelegramBotConfiguration = sequelize.define(
   'telegram_bot_configuration',
   {
     id: {
@@ -22,5 +23,31 @@ const TelegramBotConfiguration = Sequelize.define(
     },
   }
 );
+
+sequelize
+  .sync()
+  .then(() => {
+    Logger.info('telegram_bot_configuration table created successfully!');
+
+    TelegramBotConfiguration.findOrCreate({
+      where: {
+        id: '0',
+      },
+      defaults: {
+        token: '',
+        bot_name: '',
+        status: false,
+      },
+    }).then((result) => {
+      if (!result[1]) {
+        Logger.warn('Configuration already exist');
+      } else {
+        Logger.warn('Configuration created');
+      }
+    });
+  })
+  .catch((error) => {
+    Logger.error(`Unable to create table : ${error}`);
+  });
 
 export default TelegramBotConfiguration;

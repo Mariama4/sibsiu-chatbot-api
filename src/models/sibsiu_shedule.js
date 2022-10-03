@@ -1,7 +1,8 @@
-import Sequelize from '../db/index.js';
+import sequelize from '../db/index.js';
 import { DataTypes } from 'sequelize';
+import { winstonLogger as Logger } from '../logger/index.js';
 
-const SibsiuShedule = Sequelize.define('sibsiu_shedule', {
+const SibsiuShedule = sequelize.define('sibsiu_shedule', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -36,5 +37,14 @@ const SibsiuShedule = Sequelize.define('sibsiu_shedule', {
     type: DataTypes.DATE,
   },
 });
+
+sequelize
+  .sync()
+  .then(() => {
+    Logger.info('sibsiu_shedule table created successfully!');
+  })
+  .catch((error) => {
+    Logger.error(`Unable to create table : ${error}`);
+  });
 
 export default SibsiuShedule;

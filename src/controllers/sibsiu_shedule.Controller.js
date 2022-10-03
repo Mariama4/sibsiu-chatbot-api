@@ -1,4 +1,4 @@
-import SibsiuShedule from '../models/index.js';
+import { SibsiuShedule } from '../models/index.js';
 
 class SibsiuSheduleController {
   async create(req, res) {

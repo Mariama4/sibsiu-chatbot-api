@@ -1,0 +1,37 @@
+{
+    "ID": "",
+    "DATA": {
+          "MESSAGE": {
+              "TYPE": "",
+              "PARSE_MODE": "",
+              "TEXT": "",
+              "PHOTO": "",
+              "PHOTO_CAPTION": "",
+              "MEDIA_GROUP": [],
+              "MEDIA_CAPTION": "",
+              "VIDEO_NOTE": "",
+              "VIDEO_NOTE_CAPTION": "",
+              "VENUE_LATITUDE": "",
+              "VENUE_LONGITUDE": "",
+              "VENUE_TITLE": "",
+              "VENUE_ADDRESS": "",
+              "VENUE_CAPTION": "",
+              "CONTACT_PHONE_NUMBER": "",
+              "CONTACT_FIRST_NAME": "",
+              "CONTACT_LAST_NAME": "",
+              "CONTACT_CAPTION": "",
+              "WEB_APP": "",
+              "WEB_APP_CAPTION": "",
+              "WEB_APP_TEXT": ""
+          },
+          "BUTTONS": [
+              {
+                  "TEXT": "",
+                  "REDIRECT_ON_ID_FRAME":""
+              }
+          ]
+      }
+  }
+  
+  
+  

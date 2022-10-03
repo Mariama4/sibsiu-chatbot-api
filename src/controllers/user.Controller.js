@@ -1,6 +1,6 @@
 import ApiError from '../error/api.Error.js';
 import bcrypt from 'bcrypt';
-import User from '../models/user.js';
+import { User } from '../models/index.js';
 import jwt from 'jsonwebtoken';
 const { sign, verify } = jwt;
 

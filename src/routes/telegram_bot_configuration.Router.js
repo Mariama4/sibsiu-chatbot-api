@@ -3,8 +3,7 @@ import ConfigurationController from '../controllers/configuration.Controller.js'
 
 const router = new Router();
 
-router.patch('/token', ConfigurationController.updateToken);
-router.patch('/botname', ConfigurationController.updateBotName);
+router.patch('/data', ConfigurationController.updateData);
 router.patch('/status', ConfigurationController.updateStatus);
 router.get('/', ConfigurationController.getData);
 

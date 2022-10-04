@@ -4,23 +4,36 @@ import { exec } from 'child_process';
 import { winstonLogger as Logger } from '../logger/index.js';
 
 class ConfigurationController {
-  async updateToken(req, res, next) {
-    const { id, token } = req.body;
+  async updateData(req, res, next) {
+    const { id, token, bot_name } = req.body;
+
+    if (!id || !!parseInt(id)) {
+      return next(ApiError.internal('Invalid id'));
+    } else if (!token || !token.trim()) {
+      return next(ApiError.internal('Invalid token'));
+    } else if (!bot_name || !bot_name.trim()) {
+      return next(ApiError.internal('Invalid bot_name'));
+    }
 
     const configuration = await TelegramBotConfiguration.update(
       {
         token,
+        bot_name,
       },
-      { where: { id } }
+      {
+        where: {
+          id,
+        },
+      }
     );
+
     if (!Number(configuration)) {
       return next(ApiError.internal('Запись с таким id не найдена.'));
-    } else {
-      const updatedConfiguration = await TelegramBotConfiguration.findOne({
-        where: { id },
-      });
-      return res.json({ message: 'Запись обновлена.', updatedConfiguration });
     }
+
+    return res.json({
+      message: 'Запись обновлена',
+    });
   }
 
   async updateStatus(req, res, next) {
@@ -45,25 +58,6 @@ class ConfigurationController {
     const configuration = await TelegramBotConfiguration.update(
       {
         status,
-      },
-      { where: { id } }
-    );
-    if (!Number(configuration)) {
-      return next(ApiError.internal('Запись с таким id не найдена.'));
-    } else {
-      const updatedConfiguration = await TelegramBotConfiguration.findOne({
-        where: { id },
-      });
-      return res.json({ message: 'Запись обновлена.', updatedConfiguration });
-    }
-  }
-
-  async updateBotName(req, res, next) {
-    const { id, name } = req.body;
-
-    const configuration = await TelegramBotConfiguration.update(
-      {
-        bot_name: name,
       },
       { where: { id } }
     );

@@ -8,7 +8,6 @@ const loggerConfiguration = {
     colorize(),
     timestamp(),
     label({ label: 'express API' }),
-    // Winston configuration object's relevant line
     printf((params) => {
       return `${new Date().toTimeString()} - ${params.level}: ${
         params.message

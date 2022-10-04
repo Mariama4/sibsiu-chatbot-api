@@ -11,6 +11,7 @@ import { morganLogger, winstonLogger as Logger } from './src/logger/index.js';
 const PORT = process.env.PORT || 5050;
 
 const app = express();
+
 app.use(morganLogger);
 app.use(cors());
 app.use(express.json());

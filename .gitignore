@@ -4,6 +4,7 @@
 node_modules
 # ignore python stuff
 env
+.idea
 
 *.DS_Store
 *.png

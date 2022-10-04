@@ -38,19 +38,23 @@ class ConfigurationController {
 
   async updateStatus(req, res, next) {
     const { id, status } = req.body;
-    let executionLine;
-    executionLine = status
+
+    if (!id || !!parseInt(id)) {
+      return next(ApiError.internal('Invalid id'));
+    } else if (!status || !status.trim()) {
+      return next(ApiError.internal('Invalid status'));
+    }
+
+    const executionCommand = status
       ? 'bash src/bash/StartBot.sh'
       : 'bash src/bash/StopBot.sh';
 
-    exec(executionLine, (error, stdout, stderr) => {
+    exec(executionCommand, (error, stdout, stderr) => {
       if (error) {
         Logger.error(error.message);
-        // return next(ApiError.internal('Непредвиденная ошибка.'));
       }
       if (stderr) {
         Logger.warn(`stderr: ${stderr}`);
-        // return next(ApiError.internal('Непредвиденная ошибка.'));
       }
       Logger.info(`stdout: ${stdout}`);
     });
@@ -63,17 +67,16 @@ class ConfigurationController {
     );
     if (!Number(configuration)) {
       return next(ApiError.internal('Запись с таким id не найдена.'));
-    } else {
-      const updatedConfiguration = await TelegramBotConfiguration.findOne({
-        where: { id },
-      });
-      return res.json({ message: 'Запись обновлена.', updatedConfiguration });
     }
+    configuration = await TelegramBotConfiguration.findOne({
+      where: { id },
+    });
+    return res.json({ message: 'Запись обновлена.', data: configuration });
   }
 
   async getData(req, res, next) {
     const configuration = await TelegramBotConfiguration.findAll();
-    return res.json({ configuration });
+    return res.json({ data: configuration });
   }
 }
 

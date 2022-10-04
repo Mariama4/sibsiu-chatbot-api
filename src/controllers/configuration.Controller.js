@@ -8,11 +8,11 @@ class ConfigurationController {
     const { id, token, bot_name } = req.body;
 
     if (!id || !!parseInt(id)) {
-      return next(ApiError.internal('Invalid id'));
+      return next(ApiError.internal('Неверный id'));
     } else if (!token || !token.trim()) {
-      return next(ApiError.internal('Invalid token'));
+      return next(ApiError.internal('Неверный token'));
     } else if (!bot_name || !bot_name.trim()) {
-      return next(ApiError.internal('Invalid bot_name'));
+      return next(ApiError.internal('Неверный bot_name'));
     }
 
     const configuration = await TelegramBotConfiguration.update(
@@ -40,9 +40,9 @@ class ConfigurationController {
     const { id, status } = req.body;
 
     if (!id || !!parseInt(id)) {
-      return next(ApiError.internal('Invalid id'));
+      return next(ApiError.internal('Неверный id'));
     } else if (!status || !status.trim()) {
-      return next(ApiError.internal('Invalid status'));
+      return next(ApiError.internal('Неверный status'));
     }
 
     const executionCommand = status

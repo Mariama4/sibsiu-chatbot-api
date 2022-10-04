@@ -6,6 +6,12 @@ export default (req, res, next) => {
     next();
   }
   try {
+    if (
+      !!req.headers.bot_token &&
+      process.env.BOT_TOKEN === req.headers.bot_token
+    ) {
+      return next();
+    }
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).json({

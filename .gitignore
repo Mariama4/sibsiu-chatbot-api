@@ -10,3 +10,4 @@ env
 *.jpg
 *.pdf
 *.mp4
+docker-compose.yml

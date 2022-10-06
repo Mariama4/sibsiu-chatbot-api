@@ -33,45 +33,45 @@ class FrameController {
     const frame = await TelegramBotFrame.create({
       data: frameJsonStructure,
     });
-    return res.json({ message: 'Добавлено', data: frame });
+    return res.json({ message: 'Добавлено', result: frame });
   }
 
   async update(req, res, next) {
     let { id, data } = req.body;
 
-    if (!id || !!parseInt(id)) {
+    if (!id || !parseInt(id)) {
       return next(ApiError.internal('Неверный id'));
     } else if (!data || !data.trim()) {
-      return next(ApiError.internal('Неверный data'));
+      return next(ApiError.internal('Неверная data'));
     }
     try {
       data = JSON.parse(data);
     } catch (error) {
-      return next(ApiError.internal(`Неверный data ${error}`));
+      return next(ApiError.internal(`Неверная data ${error}`));
     }
 
     if (req.files !== null) {
       const { media } = req.files;
-      const mediaType = data.DATA.MESSAGE.TYPE;
+      const mediaType = data.frame.type;
 
       switch (mediaType) {
-        case 'PHOTO':
+        case 'photo':
           try {
-            data.DATA.MESSAGE.PHOTO = saveSinglFile(media);
+            data.frame.photo = saveSinglFile(media);
           } catch (error) {
             return next(ApiError.internal(`Неверный media files или ${error}`));
           }
           break;
-        case 'MEDIA_GROUP':
+        case 'media_group':
           try {
-            data.DATA.MESSAGE.MEDIA_GROUP = saveSeveralFiles(media);
+            data.frame.media_group = saveSeveralFiles(media);
           } catch (error) {
             return next(ApiError.internal(`Неверный media files или ${error}`));
           }
           break;
-        case 'VIDEO_NOTE':
+        case 'video_note':
           try {
-            data.DATA.MESSAGE.VIDEO_NOTE = saveSinglFile(media);
+            data.frame.video_note = saveSinglFile(media);
           } catch (error) {
             return next(ApiError.internal(`Неверный media files или ${error}`));
           }
@@ -89,8 +89,10 @@ class FrameController {
     if (!Number(frame)) {
       return next(ApiError.internal('Запись с таким id не найдена'));
     } else {
-      const updatedFrames = await TelegramBotFrame.findAll();
-      return res.json({ message: 'Запись обновлена', data: updatedFrames });
+      const updatedFrames = await TelegramBotFrame.findOne({
+        where: { id },
+      });
+      return res.json({ message: 'Запись обновлена', result: updatedFrames });
     }
   }
 
@@ -106,7 +108,7 @@ class FrameController {
 
   async getAll(req, res, next) {
     const frames = await TelegramBotFrame.findAll({ order: [['id', 'ASC']] });
-    return res.json({ data: frames });
+    return res.json({ result: frames });
   }
 
   async getById(req, res, next) {
@@ -114,7 +116,7 @@ class FrameController {
     const frame = await TelegramBotFrame.findOne({
       where: { id },
     });
-    return res.json({ data: frame });
+    return res.json({ result: frame });
   }
 }
 

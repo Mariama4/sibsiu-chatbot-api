@@ -71,12 +71,12 @@ class ConfigurationController {
     configuration = await TelegramBotConfiguration.findOne({
       where: { id },
     });
-    return res.json({ message: 'Запись обновлена.', data: configuration });
+    return res.json({ message: 'Запись обновлена.', result: configuration });
   }
 
   async getData(req, res, next) {
     const configuration = await TelegramBotConfiguration.findAll();
-    return res.json({ data: configuration });
+    return res.json({ result: configuration });
   }
 }
 

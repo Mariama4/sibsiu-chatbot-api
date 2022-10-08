@@ -1,38 +1,55 @@
 {
     "frame_id": "",
-    "frame":{ 
+    "frame":{
         "type": "",
         "parse_mode": "html",
         "text": "",
-        "photo": "", 
+        "photo": "",
         "photo_caption": "",
+        "video": "",
+        "video_caption": "",
+        "animation": "",
+        "animation_caption": "",
+        "document": "",
+        "document_caption": "",
+        "audio": "",
+        "audio_caption": "",
+        "voice": "",
+        "voice_caption": "",
         "media_group": [],
-        "media_group_caption": "",
+        "media_caption": "",
         "video_note": "",
-        "video_note_caption": "", 
-        "venue_latitude": "", 
-        "venue_longitude": "", 
-        "venue_title": "", 
-        "venue_address": "", 
-        "venue_caption": "", 
+        "video_note_caption": "",
+        "location_latitude": "",
+        "location_longitude": "",
+        "location_horizontal_accuracy": "",
+        "venue_latitude": "",
+        "venue_longitude": "",
+        "venue_title": "",
+        "venue_address": "",
+        "venue_caption": "",
         "contact_phone_number": "",
-        "contact_first_name": "", 
-        "contact_last_name": "", 
-        "contact_caption": "", 
+        "contact_first_name": "",
+        "contact_last_name": "",
+        "contact_caption": "",
         "web_app": "",
-        "web_app_button_text": "", 
-        "web_app_caption": "", 
-        "disable_web_page_preview": "false", 
-        "markup_type": "reply", 
+        "web_app_button_text": "",
+        "web_app_caption": "",
+        "disable_web_page_preview": "",
+        "markup_type": "reply",
         "markup": [
             {
-                "text": "text",
-                "callback": "frameid"
+                "text": "start",
+                "callback": "start"
             }
         ],
         "error_handler": "",
-        "back_markup": []
+        "back_mark_up": [
+            {
+                "text": "start",
+                "callback": "start"
+            }
+        ]
     }
 }
-  
-  
+

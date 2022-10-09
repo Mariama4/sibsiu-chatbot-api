@@ -14,10 +14,6 @@ const TelegramBotConfiguration = sequelize.define(
       type: DataTypes.STRING,
       enique: true,
     },
-    bot_name: {
-      type: DataTypes.STRING,
-      enique: true,
-    },
     status: {
       type: DataTypes.BOOLEAN,
     },
@@ -35,7 +31,6 @@ sequelize
       },
       defaults: {
         token: '',
-        bot_name: '',
         status: false,
       },
     }).then((result) => {

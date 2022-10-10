@@ -44,7 +44,7 @@ class ConfigurationController {
     } else if (!status || !status.trim()) {
       return next(ApiError.internal('Неверный status'));
     }
-
+    // переделать под запрос
     const executionCommand = status
       ? 'bash src/bash/StartBot.sh'
       : 'bash src/bash/StopBot.sh';

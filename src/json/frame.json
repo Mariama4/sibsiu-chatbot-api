@@ -42,13 +42,6 @@
                 "text": "start",
                 "callback": "start"
             }
-        ],
-        "error_handler": "",
-        "back_mark_up": [
-            {
-                "text": "start",
-                "callback": "start"
-            }
         ]
     }
 }

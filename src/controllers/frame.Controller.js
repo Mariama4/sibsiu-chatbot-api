@@ -104,6 +104,20 @@ class FrameController {
             return next(ApiError.internal(`Неверный media files или ${error}`));
           }
           break;
+        case 'document':
+          try {
+            data.frame.document = saveSinglFile(media);
+          } catch (error) {
+            return next(ApiError.internal(`Неверный media files или ${error}`));
+          }
+          break;
+        case 'animation':
+          try {
+            data.frame.animation = saveSinglFile(media);
+          } catch (error) {
+            return next(ApiError.internal(`Неверный media files или ${error}`));
+          }
+          break;
         default:
           return next(ApiError.internal(`Неверный тип сообщения`));
       }

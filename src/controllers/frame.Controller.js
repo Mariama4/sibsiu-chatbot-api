@@ -18,7 +18,7 @@ const saveSinglFile = (media) => {
 };
 
 const saveVoiceSinglFile = (media) => {
-  const fileExtansion = '.ogg';
+  const fileExtansion = 'ogg';
   const fileName = `${uuidv4()}.${fileExtansion}`;
   media.mv(path.resolve(__dirname, '../..', 'public', fileName));
   return fileName;

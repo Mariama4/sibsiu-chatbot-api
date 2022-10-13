@@ -1,7 +1,7 @@
 {
-    "frame_id": "",
+    "frame_id": "new",
     "frame":{
-        "type": "",
+        "type": "text",
         "parse_mode": "html",
         "text": "",
         "photo": "",

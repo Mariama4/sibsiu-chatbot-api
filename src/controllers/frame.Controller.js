@@ -62,6 +62,20 @@ class FrameController {
             return next(ApiError.internal(`Неверный media files или ${error}`));
           }
           break;
+        case 'video':
+          try {
+            data.frame.video = saveSinglFile(media);
+          } catch (error) {
+            return next(ApiError.internal(`Неверный media files или ${error}`));
+          }
+          break;
+        case 'audio':
+          try {
+            data.frame.audio = saveSinglFile(media);
+          } catch (error) {
+            return next(ApiError.internal(`Неверный media files или ${error}`));
+          }
+          break;
         case 'media_group':
           try {
             data.frame.media_group = saveSeveralFiles(media);

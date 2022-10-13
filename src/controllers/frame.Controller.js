@@ -17,6 +17,13 @@ const saveSinglFile = (media) => {
   return fileName;
 };
 
+const saveVoiceSinglFile = (media) => {
+  const fileExtansion = '.ogg';
+  const fileName = `${uuidv4()}.${fileExtansion}`;
+  media.mv(path.resolve(__dirname, '../..', 'public', fileName));
+  return fileName;
+};
+
 const saveSeveralFiles = (media) => {
   let filesNameArray = [];
   media.map((element) => {
@@ -72,6 +79,13 @@ class FrameController {
         case 'audio':
           try {
             data.frame.audio = saveSinglFile(media);
+          } catch (error) {
+            return next(ApiError.internal(`Неверный media files или ${error}`));
+          }
+          break;
+        case 'voice':
+          try {
+            data.frame.voice = saveVoiceSinglFile(media);
           } catch (error) {
             return next(ApiError.internal(`Неверный media files или ${error}`));
           }

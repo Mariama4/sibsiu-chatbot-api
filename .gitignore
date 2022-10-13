@@ -9,6 +9,7 @@ env
 *.DS_Store
 *.png
 *.jpg
+*.ogg
 *.pdf
 *.mp4
 *.mp3

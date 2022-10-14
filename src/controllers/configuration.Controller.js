@@ -1,13 +1,13 @@
 import { TelegramBotConfiguration } from '../models/index.js';
 import ApiError from '../error/api.Error.js';
-import { exec } from 'child_process';
 import { winstonLogger as Logger } from '../logger/index.js';
+import axios from 'axios';
 
 class ConfigurationController {
   async updateData(req, res, next) {
-    const { id, token, bot_name } = req.body;
+    const { id, token, bot_name = 'none' } = req.body;
 
-    if (!id || !!parseInt(id)) {
+    if (!!parseInt(id)) {
       return next(ApiError.internal('Неверный id'));
     } else if (!token || !token.trim()) {
       return next(ApiError.internal('Неверный token'));
@@ -15,7 +15,7 @@ class ConfigurationController {
       return next(ApiError.internal('Неверный bot_name'));
     }
 
-    const configuration = await TelegramBotConfiguration.update(
+    let configuration = await TelegramBotConfiguration.update(
       {
         token,
         bot_name,
@@ -30,36 +30,30 @@ class ConfigurationController {
     if (!Number(configuration)) {
       return next(ApiError.internal('Запись с таким id не найдена.'));
     }
-
+    configuration = await TelegramBotConfiguration.findOne({
+      where: { id },
+    });
     return res.json({
       message: 'Запись обновлена',
+      result: configuration,
     });
   }
 
   async updateStatus(req, res, next) {
     const { id, status } = req.body;
 
-    if (!id || !!parseInt(id)) {
+    if (!!parseInt(id)) {
       return next(ApiError.internal('Неверный id'));
-    } else if (!status || !status.trim()) {
+    } else if (typeof status != 'boolean') {
       return next(ApiError.internal('Неверный status'));
     }
-    // переделать под запрос
-    const executionCommand = status
-      ? 'bash src/bash/StartBot.sh'
-      : 'bash src/bash/StopBot.sh';
+    const executionRequest = status ? '/start' : '/stop';
+    axios
+      .get(process.env.BOT_API + executionRequest)
+      .then()
+      .catch();
 
-    exec(executionCommand, (error, stdout, stderr) => {
-      if (error) {
-        Logger.error(error.message);
-      }
-      if (stderr) {
-        Logger.warn(`stderr: ${stderr}`);
-      }
-      Logger.info(`stdout: ${stdout}`);
-    });
-
-    const configuration = await TelegramBotConfiguration.update(
+    let configuration = await TelegramBotConfiguration.update(
       {
         status,
       },

@@ -6,12 +6,10 @@ const TelegramBotLog = sequelize.define('telegram_bot_log', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
+    autoIncrement: true,
   },
-  action: {
-    type: DataTypes.STRING,
-  },
-  date: {
-    type: DataTypes.DATE,
+  data: {
+    type: DataTypes.JSON,
   },
 });
 

@@ -2,27 +2,27 @@ import sequelize from '../db/index.js';
 import { DataTypes } from 'sequelize';
 import { winstonLogger as Logger } from '../logger/index.js';
 
-const TelegramUserLog = sequelize.define('telegram_user_log', {
+const TelegramBotFrameLog = sequelize.define('telegram_bot_frame_log', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  action: {
+  frame_id: {
     type: DataTypes.STRING,
   },
-  date: {
-    type: DataTypes.DATE,
+  user_id: {
+    type: DataTypes.BIGINT,
   },
 });
 
 sequelize
   .sync()
   .then(() => {
-    Logger.info('telegram_user_log table created successfully!');
+    Logger.info('telegram_bot_frame_log table created successfully!');
   })
   .catch((error) => {
     Logger.error(`Unable to create table : ${error}`);
   });
 
-export default TelegramUserLog;
+export default TelegramBotFrameLog;

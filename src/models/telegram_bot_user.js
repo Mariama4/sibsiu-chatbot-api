@@ -2,11 +2,10 @@ import sequelize from '../db/index.js';
 import { DataTypes } from 'sequelize';
 import { winstonLogger as Logger } from '../logger/index.js';
 
-const TelegramUser = sequelize.define('telegram_user', {
+const TelegramBotUser = sequelize.define('telegram_bot_user', {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
     primaryKey: true,
-    autoIncrement: true,
   },
   is_bot: {
     type: DataTypes.BOOLEAN,
@@ -23,18 +22,15 @@ const TelegramUser = sequelize.define('telegram_user', {
   language_code: {
     type: DataTypes.STRING,
   },
-  createdAt: {
-    type: DataTypes.DATE,
-  },
 });
 
 sequelize
   .sync()
   .then(() => {
-    Logger.info('telegram_user table created successfully!');
+    Logger.info('telegram_bot_user table created successfully!');
   })
   .catch((error) => {
     Logger.error(`Unable to create table : ${error}`);
   });
 
-export default TelegramUser;
+export default TelegramBotUser;

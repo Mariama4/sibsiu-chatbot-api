@@ -48,10 +48,15 @@ class ConfigurationController {
       return next(ApiError.internal('Неверный status'));
     }
     const executionRequest = status ? '/start' : '/stop';
-    axios
-      .get(process.env.BOT_API + executionRequest)
-      .then()
-      .catch();
+
+    try {
+      axios
+        .get(process.env.BOT_API + executionRequest)
+        .then()
+        .catch((error) => Logger.error(error));
+    } catch (error) {
+      Logger.error(error);
+    }
 
     let configuration = await TelegramBotConfiguration.update(
       {

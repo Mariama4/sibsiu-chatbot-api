@@ -137,7 +137,7 @@ class FrameController {
       return res.json({ message: 'Запись обновлена', result: updatedFrames });
     }
   }
-
+  // При удалении фрейма должна удаляться вся статистика связанная с этим
   async delete(req, res, next) {
     const { id } = req.params;
     const frame = await TelegramBotFrame.destroy({ where: { id } });

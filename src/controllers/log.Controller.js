@@ -10,7 +10,7 @@ class LogController {
   }
 
   async getAll(req, res, next) {
-    const logs = await TelegramBotLog.getAll();
+    const logs = await TelegramBotLog.findAll();
     return res.json({ result: logs });
   }
 }

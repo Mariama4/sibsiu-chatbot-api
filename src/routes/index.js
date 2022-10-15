@@ -12,7 +12,7 @@ router.use('/user', userRouter);
 router.use('/configuration', configurationRouter);
 router.use('/frame', frameRouter);
 router.use('/frame_log', frameLogRouter);
-router.use('/log', telegramBotLogRouter);
+router.use('/tgbot_log', telegramBotLogRouter);
 router.use('/tgbot_user', telegramBotUserRouter);
 
 export default router;

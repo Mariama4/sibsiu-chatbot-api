@@ -36,6 +36,7 @@
         "web_app": "",
         "web_app_button_text": "",
         "web_app_caption": "",
+        "stored_frame_id": "",
         "disable_web_page_preview": "",
         "markup_type": "reply",
         "markup": [

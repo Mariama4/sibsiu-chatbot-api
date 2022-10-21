@@ -15,6 +15,15 @@ class LogController {
     return res.json({ result: logs });
   }
 
+  async getAllLimit(req, res, next) {
+    const { limit } = req.body;
+    console.log(limit);
+    const logs = await TelegramBotLog.findAll({
+      limit: limit,
+    });
+    return res.json({ result: logs });
+  }
+
   async getByDate(req, res, next) {
     let { startDate, endDate } = req.body;
     startDate = new Date(startDate);

@@ -17,6 +17,14 @@ class FrameLogController {
     return res.json({ result: frame_log });
   }
 
+  async getAllLimit(req, res, next) {
+    const { limit } = req.body;
+    const frame_log = await TelegramBotFrameLog.findAll({
+      limit: limit,
+    });
+    return res.json({ result: frame_log });
+  }
+
   async getByDate(req, res, next) {
     let { startDate, endDate } = req.body;
     startDate = new Date(startDate);

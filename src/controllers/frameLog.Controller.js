@@ -1,5 +1,6 @@
 import { TelegramBotFrameLog } from '../models/index.js';
 import { winstonLogger as Logger } from '../logger/index.js';
+import { Op } from 'sequelize';
 
 class FrameLogController {
   async create(req, res, next) {
@@ -13,6 +14,20 @@ class FrameLogController {
 
   async getAll(req, res, next) {
     const frame_log = await TelegramBotFrameLog.findAll();
+    return res.json({ result: frame_log });
+  }
+
+  async getByDate(req, res, next) {
+    let { startDate, endDate } = req.body;
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
+    const frame_log = await TelegramBotFrameLog.findAll({
+      where: {
+        createdAt: {
+          [Op.between]: [startDate, endDate],
+        },
+      },
+    });
     return res.json({ result: frame_log });
   }
 }

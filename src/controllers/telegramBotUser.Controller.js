@@ -1,5 +1,6 @@
 import { TelegramBotUser } from '../models/index.js';
 import { winstonLogger as Logger } from '../logger/index.js';
+import { Op } from 'sequelize';
 
 class TelegramBotUserController {
   async create(req, res, next) {
@@ -33,6 +34,20 @@ class TelegramBotUserController {
 
   async getAll(req, res, next) {
     const telegramBotUsers = await TelegramBotUser.findAll();
+    return res.json({ result: telegramBotUsers });
+  }
+
+  async getByDate(req, res, next) {
+    let { startDate, endDate } = req.body;
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
+    const telegramBotUsers = await TelegramBotUser.findAll({
+      where: {
+        createdAt: {
+          [Op.between]: [startDate, endDate],
+        },
+      },
+    });
     return res.json({ result: telegramBotUsers });
   }
 }

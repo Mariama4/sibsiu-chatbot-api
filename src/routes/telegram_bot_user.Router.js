@@ -6,6 +6,11 @@ const router = new Router();
 
 router.post('/', authMiddleware, telegramBotUserController.create);
 router.get('/', authMiddleware, telegramBotUserController.getAll);
+router.post(
+  '/between-date',
+  authMiddleware,
+  telegramBotUserController.getByDate
+);
 router.get('/:id', authMiddleware, telegramBotUserController.getById);
 
 export default router;

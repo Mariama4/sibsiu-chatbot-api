@@ -20,6 +20,7 @@ class LogController {
     console.log(limit);
     const logs = await TelegramBotLog.findAll({
       limit: limit,
+      order: [['id', 'DESC']],
     });
     return res.json({ result: logs });
   }

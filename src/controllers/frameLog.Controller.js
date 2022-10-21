@@ -21,6 +21,7 @@ class FrameLogController {
     const { limit } = req.body;
     const frame_log = await TelegramBotFrameLog.findAll({
       limit: limit,
+      order: [['id', 'DESC']],
     });
     return res.json({ result: frame_log });
   }

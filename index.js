@@ -1,5 +1,4 @@
 import sequelize from './src/db/index.js';
-import startPythonFile from './src/services/parse_sibsiu_shedule.js';
 import * as models from './src/models/index.js';
 import express from 'express';
 import fileUpload from 'express-fileupload';
@@ -22,7 +21,6 @@ app.use(errorHandler);
 
 const start = async () => {
   try {
-    // startPythonFile();
     app.listen(PORT, () => {
       Logger.info(`Server running on port ${PORT}`);
     });
